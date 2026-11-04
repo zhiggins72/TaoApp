@@ -6,10 +6,12 @@ chCounter: 1
 chContent: taoFile/:chCounter/2
 chTxtPrep: []
 setChTxtPrep: func [len][
-	i: 0
+	clear chTxtPrep
+	print ["txtprep: " chTxtPrep]
 	repeat i len [
 		append chTxtPrep reduce [taoFile/:chCounter/2/:i newline] 
-		i: i + 1
+		print taoFile/:chCounter/2/:i
+		print chCounter
 	]
 ]
 setChTxtPrep length? taoFile/:chCounter/2
@@ -48,8 +50,8 @@ mainView: [
     do [sl/data: 100%]
     return
     panel [
-		prevBtn: box "Previous Chapter" on-down [updateChTxt -1 testTxt/text: chTxt print ["chCounter " chCounter]]
-		nextBtn: box "Next Chapter"     on-down [updateChTxt 1  testTxt/text: chTxt print ["chCounter " chCounter]]
+		prevBtn: button "Previous Chapter" on-down [updateChTxt -1 testTxt/text: chTxt]
+		nextBtn: button "Next Chapter"     on-down [updateChTxt 1  testTxt/text: chTxt]
 	]
 ]
 view/flags mainView [resize]
